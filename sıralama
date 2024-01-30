@@ -1,0 +1,26 @@
+<?php
+
+function temizleVeRastgeleOlustur($dizi, $adet) {
+    $temizlenmisDizi = array_filter($dizi);
+    $rastgeleElemanlar = array_rand($temizlenmisDizi, $adet);
+
+    if (!is_array($rastgeleElemanlar)) {
+        $rastgeleElemanlar = [$rastgeleElemanlar];
+    }
+
+    $sonucDizi = array_map(function ($index) use ($temizlenmisDizi) {
+        return $temizlenmisDizi[$index];
+    }, $rastgeleElemanlar);
+
+    return $sonucDizi;
+}
+
+$planets = ["Mercury", "Venus", "Earth", "Mars", "Jupiter", "Saturn", "Uranus", "Neptune", "", "", NULL];
+
+print_r(temizleVeRastgeleOlustur($planets, 2));
+print_r(temizleVeRastgeleOlustur($planets, 3));
+print_r(temizleVeRastgeleOlustur($planets, 2));
+print_r(temizleVeRastgeleOlustur($planets, 4));
+print_r(temizleVeRastgeleOlustur($planets, 5));
+
+?>
